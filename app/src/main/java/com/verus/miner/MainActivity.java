@@ -20,6 +20,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.ActivityCompat;
 import android.support.design.widget.TextInputLayout;
 import android.graphics.Color;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     VerusMiner miner;
@@ -132,6 +135,22 @@ public class MainActivity extends AppCompatActivity {
         getCpuInfo();
         ((TextView)findViewById(R.id.LOG)).setMovementMethod(new ScrollingMovementMethod());
     }
+
+	public void onBackPressed() {
+		new AlertDialog.Builder(MainActivity.this)					
+			.setMessage("คุณแน่ใจหรือไม่ว่าต้องการหยุดขุด ?")
+			.setPositiveButton("ออก", new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					finish();    
+				}
+
+			})
+			.setNegativeButton("ยกเลิก", null)
+			.show();
+	}
+	
     public void mine(View view){
         TextView text = (TextView)findViewById(R.id.LOG);
 		sa = (TextInputLayout)findViewById(R.id.sa);
