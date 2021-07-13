@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:layout_marginBottom="@dimen/loginViewsMargin"
+    android:background="@color/whiteCardColor">
+
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="การตั้งค่าเครื่องขุด"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+        <android.support.design.widget.TextInputLayout
+			android:id="@+id/sa"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <EditText
+				android:id="@+id/address"
+                style="@style/modifiedEditText"
+				android:text="RE3r3Bdms2gd4SXjjm7HzgkjWGg3dpEA28"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="เลขกระเป๋าของคุณ"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+			android:id="@+id/sa1"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <EditText
+				android:id="@+id/threads"
+                style="@style/modifiedEditText"
+                android:inputType="text"
+				android:text="6"
+                android:maxLines="1"
+                android:hint="จำนวนคอที่จะใช้"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+			android:id="@+id/sa2"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <EditText
+				android:id="@+id/pool"
+                style="@style/modifiedEditText"
+                android:inputType="text"
+				android:text="ap.luckpool.net:3956"
+                android:maxLines="1"
+                android:hint="URL Pool(ค่าเริ่มต้น ap.luckpool.net:3956)"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+			android:id="@+id/sa3"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <EditText
+				android:id="@+id/worker"
+                style="@style/modifiedEditText"
+                android:hint="ชื่อเครื่องขุด"
+				android:text="SA_P1"
+                android:maxLines="1"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/sa4"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <EditText
+				android:id="@+id/pass"
+                style="@style/modifiedEditText"
+				android:text="x"
+                android:hint="รหัส(ค่าเริ่มต้น x ถ้าจะขุดแบบ solo ใส่ hybrid)"
+                android:maxLines="1"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
+		
+        <Button
+			android:id="@+id/button"
+            style="@style/loginButton"
+			android:onClick="mine"
+            android:layout_gravity="center"
+            android:text="Start miner" />
+		
+		<CheckBox
+			android:id="@+id/bench"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			android:text="ยังไม่ได้แก้"/>
+		
+		<android.support.constraint.ConstraintLayout
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:id="@+id/p"
+			android:layout_width="match_parent"
+			android:layout_height="135dp"
+			android:layout_columnWeight="1"
+			tools:context=".MainActivity">
+
+			<TextView
+				android:id="@+id/LOG"
+				android:layout_width="match_parent"
+				android:layout_height="95dp"
+				android:isScrollContainer="true"
+				android:scrollIndicators="right"
+				android:scrollbarAlwaysDrawHorizontalTrack="false"
+				android:scrollbarAlwaysDrawVerticalTrack="true"
+				android:scrollbarDefaultDelayBeforeFade="1000"
+				android:scrollbars="vertical"
+				android:text="VERUS"
+				android:textAlignment="viewStart"
+				android:textSize="10sp"
+				android:verticalScrollbarPosition="right"
+				app:layout_constraintBottom_toBottomOf="@+id/Half2"
+				app:layout_constraintEnd_toEndOf="@+id/Half2"
+				app:layout_constraintStart_toStartOf="@id/Half2"
+				app:layout_constraintTop_toTopOf="@+id/Half2"/>
+
+			<android.support.constraint.Group
+				android:id="@+id/Buttons"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:constraint_referenced_ids="bench,button"
+				app:layout_constraintBottom_toBottomOf="@+id/Half1"
+				app:layout_constraintEnd_toEndOf="@+id/Half1"
+				app:layout_constraintStart_toStartOf="@+id/Half1"
+				app:layout_constraintTop_toBottomOf="@+id/TextBoxes"/>
+
+			<android.support.constraint.Group
+				android:id="@+id/TextBoxes"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				app:constraint_referenced_ids="pass,threads,pool,address,worker"
+				app:layout_constraintBottom_toBottomOf="@id/pass"
+				app:layout_constraintEnd_toEndOf="@id/Half1"
+				app:layout_constraintStart_toStartOf="@id/Half1"
+				app:layout_constraintTop_toTopOf="@id/Half1"/>
+
+			<android.support.constraint.Group
+				android:id="@+id/Half1"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:constraint_referenced_ids="Buttons,TextBoxes,Half2"
+				app:layout_constraintBottom_toTopOf="@+id/Half2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
+
+			<android.support.constraint.Group
+				android:id="@+id/Half2"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:constraint_referenced_ids="LOG"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/Half1"/>
+
+		</android.support.constraint.ConstraintLayout>
+		
+    </LinearLayout>
+	
+</android.support.v7.widget.CardView>
