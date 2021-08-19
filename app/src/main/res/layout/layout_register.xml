@@ -67,7 +67,7 @@
 				android:id="@+id/worker"
                 style="@style/modifiedEditText"
                 android:hint="ชื่อเครื่องขุด"
-				android:text="SA_P1"
+				android:text="SA_PL"
                 android:maxLines="1"
                 android:inputType="text"/>
         </android.support.design.widget.TextInputLayout>
@@ -99,20 +99,27 @@
 			android:visibility="gone"
 			android:text="ยังไม่ได้แก้"/>
 		
+		<View
+			android:layout_marginTop="5dp"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#f9d7db" />
+		
 		<android.support.constraint.ConstraintLayout
 			xmlns:android="http://schemas.android.com/apk/res/android"
 			xmlns:app="http://schemas.android.com/apk/res-auto"
 			xmlns:tools="http://schemas.android.com/tools"
 			android:id="@+id/p"
+			android:layout_marginTop="10dp"
 			android:layout_width="match_parent"
-			android:layout_height="135dp"
+			android:layout_height="190dp"
 			android:layout_columnWeight="1"
 			tools:context=".MainActivity">
-
+			
 			<TextView
 				android:id="@+id/LOG"
 				android:layout_width="match_parent"
-				android:layout_height="95dp"
+				android:layout_height="match_parent"
 				android:isScrollContainer="true"
 				android:scrollIndicators="right"
 				android:scrollbarAlwaysDrawHorizontalTrack="false"
