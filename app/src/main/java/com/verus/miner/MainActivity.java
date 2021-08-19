@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 pos = output.indexOf("aes", ++pos);
             }
             if(count > 0) {
-                threads.setText(String.valueOf(count));
+              //  threads.setText(String.valueOf(count)); // จำนวนคอถ้าไม่ปิดจะจำค่าตรงนี้แทน
                 text.setText("มือถือคุณมี " + String.valueOf(count) +" คอ");
                 Log.e("test", String.valueOf(count) + " คอ");
 
@@ -167,18 +167,21 @@ public class MainActivity extends AppCompatActivity {
             text.scrollTo(0, 0);
             LOG = "";
             button.setText("Start");
+         //แสดงการตั้งค่าต่างๆ
 			sa.setVisibility(View.VISIBLE);
 			sa1.setVisibility(View.VISIBLE);
 			sa2.setVisibility(View.VISIBLE);
 			sa3.setVisibility(View.VISIBLE);
 			sa4.setVisibility(View.VISIBLE);
         }else {
+        //saveSettings จำค่าต่างๆไว้ this
             saveSettings(threads.getText().toString()  + '\n' + worker.getText().toString()  + '\n' + pool.getText().toString() + '\n' + pass.getText().toString() + '\n' + address.getText().toString(),this);
             CheckBox bench = (CheckBox)findViewById(R.id.bench);
             miner.mine(threads.getText().toString(),pass.getText().toString(),pool.getText().toString(),worker.getText().toString(),address.getText().toString(),bench.isChecked());
             handler.postDelayed(mainLoop, 200);
             mining = true;
             button.setText("Stop");
+        // ซ่อนการตั้งค่าทั้งหมด
 			sa.setVisibility(View.GONE);
 			sa1.setVisibility(View.GONE);
 			sa2.setVisibility(View.GONE);
@@ -201,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("test", LOG);
         handler.removeCallbacks(mainLoop);
     }
-   
+   //ตั้งค่าlog ถ้าไม่เข้าใจไม่ต้องแก้
     private Runnable mainLoop = new Runnable() {
         @Override
         public void run() {
@@ -254,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+//ฟังชั่นจำค่า ส่งไปยัง data/config.txt
     private void saveSettings(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -264,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+/ฟังชั่นถอดรหัสจากที่ส่งมากจาก data/config.txt
     private String readSettings(Context context) {
 
         String ret = "";
