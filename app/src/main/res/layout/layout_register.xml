@@ -21,74 +21,74 @@
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
         <android.support.design.widget.TextInputLayout
-			android:id="@+id/sa"
+	    android:id="@+id/sa"
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
-				android:id="@+id/address"
+		android:id="@+id/address"
                 style="@style/modifiedEditText"
-				android:text="RE3r3Bdms2gd4SXjjm7HzgkjWGg3dpEA28"
+		android:text="RE3r3Bdms2gd4SXjjm7HzgkjWGg3dpEA28"
                 android:inputType="text"
                 android:maxLines="1"
                 android:hint="เลขกระเป๋าของคุณ"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-			android:id="@+id/sa1"
+	    android:id="@+id/sa1"
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
-				android:id="@+id/threads"
+		android:id="@+id/threads"
                 style="@style/modifiedEditText"
                 android:inputType="text"
-				android:text="6"
+		android:text="6"
                 android:maxLines="1"
                 android:hint="จำนวนคอที่จะใช้"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-			android:id="@+id/sa2"
+	    android:id="@+id/sa2"
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
-				android:id="@+id/pool"
+		android:id="@+id/pool"
                 style="@style/modifiedEditText"
                 android:inputType="text"
-				android:text="ap.luckpool.net:3956"
+		android:text="ap.luckpool.net:3956"
                 android:maxLines="1"
                 android:hint="URL Pool(ค่าเริ่มต้น ap.luckpool.net:3956)"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-			android:id="@+id/sa3"
+	    android:id="@+id/sa3"
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
-				android:id="@+id/worker"
+		android:id="@+id/worker"
                 style="@style/modifiedEditText"
                 android:hint="ชื่อเครื่องขุด"
-				android:text="SA_PL"
+		android:text="SA_PL"
                 android:maxLines="1"
                 android:inputType="text"/>
         </android.support.design.widget.TextInputLayout>
 		
-		<android.support.design.widget.TextInputLayout
-			android:id="@+id/sa4"
-            style="@style/parent"
-            android:layout_marginTop="@dimen/signup_text_margin_top">
+            <android.support.design.widget.TextInputLayout
+	        android:id="@+id/sa4"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
-				android:id="@+id/pass"
+		android:id="@+id/pass"
                 style="@style/modifiedEditText"
-				android:text="x"
+		android:text="x"
                 android:hint="รหัส(ค่าเริ่มต้น x ถ้าจะขุดแบบ solo ใส่ hybrid)"
                 android:maxLines="1"
                 android:inputType="text"/>
         </android.support.design.widget.TextInputLayout>
 		
         <Button
-			android:id="@+id/button"
+	    android:id="@+id/button"
             style="@style/loginButton"
-			android:onClick="mine"
+	    android:onClick="mine"
             android:layout_gravity="center"
             android:text="Start miner" />
 		
