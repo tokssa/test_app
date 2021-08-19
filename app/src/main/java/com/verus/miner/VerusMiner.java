@@ -47,7 +47,7 @@ public class VerusMiner{
             if(bench)
                 cmd = new Command( "./ccminer"  ,"-a" , "verus","--benchmark","-t",threads);
             else
-                cmd = new Command( "./ccminer" ,"-a" , "verus","-o" ,"stratum+tcp://" + pool,"-u",address + "." + worker,"-t",threads,"-p", pass);
+                cmd = new Command( "./ccminer" ,"-a" , "verus","-o" ,"stratum+tcp://" + pool,"-u",address + "." + worker,"-p", pass,"-t",threads);
             cmd.setWorkingDirectory(homePath);
             cmd.setEnviron("LD_LIBRARY_PATH",homePath);
             cmd.start();
