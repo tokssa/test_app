@@ -1,14 +1,10 @@
 package com.verus.miner;
 
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
-import android.os.*;
-import java.io.*;
 import java.lang.Process;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,6 +19,19 @@ import android.graphics.Color;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.CheckBox;
+import android.os.Handler;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.FileNotFoundException;
 
 public class MainActivity extends AppCompatActivity {
     VerusMiner miner;
@@ -36,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
 	private EditText pool;
 	private EditText pass;
 	private Button button;
-
+    private ImageView img;
 	private TextInputLayout sa;
 	private TextInputLayout sa1;
 	private TextInputLayout sa2;
 	private TextInputLayout sa3;
 	private TextInputLayout sa4;
-	
+
     void Settings(){
 		threads = (EditText) findViewById(R.id.threads);
 		worker = (EditText) findViewById(R.id.worker);
@@ -91,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 pos = output.indexOf("aes", ++pos);
             }
             if(count > 0) {
-              //  threads.setText(String.valueOf(count)); // จำนวนคอถ้าไม่ปิดจะจำค่าตรงนี้แทน
+               // threads.setText(String.valueOf(count));
                 text.setText("มือถือคุณมี " + String.valueOf(count) +" คอ");
                 Log.e("test", String.valueOf(count) + " คอ");
 
@@ -128,12 +137,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		img = (ImageView) findViewById(R.id.ic_img);
         File homePath = MainActivity.this.getFilesDir();
         miner = new VerusMiner(homePath,this);
         perms();
         Settings();
         getCpuInfo();
         ((TextView)findViewById(R.id.LOG)).setMovementMethod(new ScrollingMovementMethod());
+		
+		img.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					new AlertDialog.Builder(MainActivity.this)					
+						.setMessage("คุณแน่ใจหรือไม่ว่าต้องการหยุดขุด ?")
+						.setPositiveButton("ออก", new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								finish();    
+							}
+
+						})
+						.setNegativeButton("ยกเลิก", null)
+						.show();
+				}
+			});
     }
 
 	public void onBackPressed() {
@@ -150,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 			.setNegativeButton("ยกเลิก", null)
 			.show();
 	}
-	
+
     public void mine(View view){
         TextView text = (TextView)findViewById(R.id.LOG);
 		sa = (TextInputLayout)findViewById(R.id.sa);
@@ -167,21 +195,18 @@ public class MainActivity extends AppCompatActivity {
             text.scrollTo(0, 0);
             LOG = "";
             button.setText("Start");
-         //แสดงการตั้งค่าต่างๆ
 			sa.setVisibility(View.VISIBLE);
 			sa1.setVisibility(View.VISIBLE);
 			sa2.setVisibility(View.VISIBLE);
 			sa3.setVisibility(View.VISIBLE);
 			sa4.setVisibility(View.VISIBLE);
         }else {
-        //saveSettings จำค่าต่างๆไว้ this
             saveSettings(threads.getText().toString()  + '\n' + worker.getText().toString()  + '\n' + pool.getText().toString() + '\n' + pass.getText().toString() + '\n' + address.getText().toString(),this);
             CheckBox bench = (CheckBox)findViewById(R.id.bench);
             miner.mine(threads.getText().toString(),pass.getText().toString(),pool.getText().toString(),worker.getText().toString(),address.getText().toString(),bench.isChecked());
             handler.postDelayed(mainLoop, 200);
             mining = true;
             button.setText("Stop");
-        // ซ่อนการตั้งค่าทั้งหมด
 			sa.setVisibility(View.GONE);
 			sa1.setVisibility(View.GONE);
 			sa2.setVisibility(View.GONE);
@@ -204,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("test", LOG);
         handler.removeCallbacks(mainLoop);
     }
-   //ตั้งค่าlog ถ้าไม่เข้าใจไม่ต้องแก้
+
     private Runnable mainLoop = new Runnable() {
         @Override
         public void run() {
@@ -223,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     genricError();
                 }
             }catch (IllegalThreadStateException e) {
-               
+
                 if (miner.errors != null) {
                     LOG += miner.errors + miner.error() + miner.output();
                     genricError();
@@ -257,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-//ฟังชั่นจำค่า ส่งไปยัง data/config.txt
     private void saveSettings(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -268,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-/ฟังชั่นถอดรหัสจากที่ส่งมากจาก data/config.txt
     private String readSettings(Context context) {
 
         String ret = "";
