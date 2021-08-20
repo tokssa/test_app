@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:orientation="vertical"
-android:keepScreenOn="true"
-style="@style/loginParent"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    style="@style/loginParent"
 	tools:context=".MainActivity">
 <ScrollView
     style="@style/parent">
@@ -52,6 +53,7 @@ style="@style/loginParent"
 
         </LinearLayout>
         <ImageView
+			android:id="@+id/ic_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
