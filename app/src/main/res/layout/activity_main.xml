@@ -60,6 +60,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
+			android:visibility="gone"
             android:src="@android:drawable/ic_menu_close_clear_cancel" />
     </RelativeLayout>
 
