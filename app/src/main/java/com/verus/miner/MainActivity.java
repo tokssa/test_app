@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
 			sa2.setVisibility(View.VISIBLE);
 			sa3.setVisibility(View.VISIBLE);
 			sa4.setVisibility(View.VISIBLE);
+			img.setVisibility(View.GONE);
         }else {
             saveSettings(threads.getText().toString()  + '\n' + worker.getText().toString()  + '\n' + pool.getText().toString() + '\n' + pass.getText().toString() + '\n' + address.getText().toString(),this);
             CheckBox bench = (CheckBox)findViewById(R.id.bench);
@@ -212,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 			sa2.setVisibility(View.GONE);
 			sa3.setVisibility(View.GONE);
 			sa4.setVisibility(View.GONE);
+			img.setVisibility(View.VISIBLE);
         }
     }
 
